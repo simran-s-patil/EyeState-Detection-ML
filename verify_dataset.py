@@ -94,8 +94,8 @@ def verify_dataset():
     else:
         print("\n⚠️  Test set not found (optional)")
 
-    print("\n✅ Dataset verification completed!")
-    print("Ready to train the model once TensorFlow is installed.")
+    print("
+✅ Dataset verification completed!"    print("Ready to train the model once TensorFlow is installed.")
 
     return True
 

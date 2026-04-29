@@ -46,7 +46,7 @@ def main():
         initial_sidebar_state='collapsed',
     )
 
-    # Blue & White Simple Theme CSS
+    # Simple blue / white website style
     st.markdown("""
     <style>
     * {
@@ -54,191 +54,263 @@ def main():
         padding: 0;
         box-sizing: border-box;
     }
-    
+
+    header,
+    #MainMenu,
+    .reportview-container .main footer {
+        visibility: hidden;
+    }
+
     html, body, [data-testid="stAppViewContainer"], [data-testid="stMainBlockContainer"] {
-        background: #FFFFFF;
+        background: #F5FAFF;
     }
-    
+
     .stApp {
-        background: #FFFFFF;
+        background: #F5FAFF;
     }
-    
+
     [data-testid="stMainBlockContainer"] {
         padding: 0 !important;
     }
-    
-    .header-container {
-        background: #0052CC;
-        padding: 30px 20px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 82, 204, 0.15);
-    }
-    
-    .header-title {
-        color: white;
-        font-size: 2rem;
-        font-weight: 700;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .header-subtitle {
-        color: rgba(255, 255, 255, 0.95);
-        font-size: 0.9rem;
-        margin-top: 6px;
-        font-weight: 400;
-    }
-    
-    .main-container {
-        max-width: 600px;
+
+    .page-wrapper {
+        max-width: 850px;
         margin: 0 auto;
-        padding: 30px 20px;
+        padding: 30px 20px 40px;
     }
-    
+
+    .hero {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 28px 20px;
+        background: white;
+        border: 1px solid #D7E7FF;
+        border-radius: 18px;
+        box-shadow: 0 18px 45px rgba(0, 82, 204, 0.08);
+        margin-bottom: 24px;
+    }
+
+    .hero-logo {
+        width: 90px;
+        height: 90px;
+        border-radius: 22px;
+        background: linear-gradient(135deg, #E6F0FF 0%, #CDE5FF 100%);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #C6DBFF;
+    }
+
+    .hero-title {
+        font-size: 2.1rem;
+        color: #003A8C;
+        font-weight: 800;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        color: #1D4ED8;
+        font-size: 1rem;
+        margin-top: 8px;
+        max-width: 620px;
+    }
+
+    .feature-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+
+    .feature-card {
+        background: white;
+        border: 1px solid #D7E7FF;
+        border-radius: 16px;
+        padding: 18px;
+        text-align: left;
+    }
+
+    .feature-title {
+        color: #003A8C;
+        font-weight: 700;
+        margin-top: 10px;
+        font-size: 0.96rem;
+    }
+
+    .feature-text {
+        color: #475569;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .section-card {
+        background: white;
+        border: 1px solid #D7E7FF;
+        border-radius: 18px;
+        padding: 24px;
+        margin-bottom: 24px;
+    }
+
+    .section-title {
+        color: #003A8C;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+    }
+
     .input-label {
-        color: #0052CC;
+        color: #003A8C;
         font-size: 0.85rem;
         font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.4px;
         margin-bottom: 12px;
         display: block;
     }
-    
-    .button-row {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        justify-content: center;
-    }
-    
-    .prediction-area {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        align-items: center;
-    }
-    
-    .image-section {
-        background: #F5F5F5;
-        border: 2px solid #0052CC;
-        border-radius: 12px;
-        padding: 20px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 300px;
-    }
-    
-    .result-box-open {
-        background: #0052CC;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .result-box-closed {
-        background: #0052CC;
-        border-radius: 12px;
-        padding: 30px;
-        text-align: center;
-        width: 100%;
-    }
-    
-    .result-label {
-        color: white;
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-    
-    .result-icon {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        display: block;
-    }
-    
-    .confidence-label {
-        color: rgba(255, 255, 255, 0.85);
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-top: 12px;
-    }
-    
-    .confidence-value {
-        color: white;
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-top: 6px;
-    }
-    
+
     .stButton > button {
         background: #0052CC !important;
         color: white !important;
         border: none !important;
-        font-weight: 600 !important;
-        border-radius: 8px !important;
-        font-size: 0.9rem !important;
+        font-weight: 700 !important;
+        border-radius: 10px !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.95rem !important;
     }
-    
+
     .stButton > button:hover {
-        background: #0041A3 !important;
+        background: #003A8C !important;
     }
-    
-    .stFileUploader {
-        background: transparent !important;
-    }
-    
+
     .stTextInput > div > div > input {
-        background: white !important;
-        color: #0052CC !important;
-        border: 1px solid #0052CC !important;
+        background: #FFFFFF !important;
+        color: #003A8C !important;
+        border: 1px solid #BDD7FF !important;
+        border-radius: 10px !important;
     }
-    
-    .stCameraInput > div > div {
-        background: transparent !important;
+
+    .stFileUploader > div {
+        background: #FFFFFF !important;
+        border: 1px solid #BDD7FF !important;
+        border-radius: 14px !important;
+        padding: 12px !important;
     }
-    
-    [data-testid="stCameraInput"] button {
-        background: #0052CC !important;
-        color: white !important;
-        border: none !important;
+
+    .result-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        align-items: start;
     }
-    
-    .stSpinner > div > div {
-        border-color: #0052CC !important;
+
+    .image-card,
+    .result-card {
+        background: white;
+        border: 1px solid #D7E7FF;
+        border-radius: 18px;
+        padding: 22px;
     }
-    
-    .stSpinner > div > div > div {
-        background-color: #0052CC !important;
+
+    .result-box {
+        border: 1px solid #0052CC;
+        border-radius: 16px;
+        padding: 24px;
+        text-align: center;
+        background: #EFF6FF;
+    }
+
+    .result-label {
+        color: #003A8C;
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-top: 14px;
+    }
+
+    .confidence-label {
+        color: #475569;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 18px;
+    }
+
+    .confidence-value {
+        color: #003A8C;
+        font-size: 2.4rem;
+        font-weight: 800;
+        margin-top: 8px;
+    }
+
+    .icon-large {
+        font-size: 3rem;
+    }
+
+    .small-note {
+        color: #64748B;
+        font-size: 0.87rem;
+    }
+
+    @media (max-width: 760px) {
+        .result-row,
+        .feature-row {
+            grid-template-columns: 1fr;
+        }
+
+        .hero {
+            padding: 20px 0;
+        }
+    }
+
+    .stAppFooter,
+    .reportview-container .main footer {
+        visibility: hidden;
     }
     </style>
     """, unsafe_allow_html=True)
 
-    # Header
-    st.markdown("""
-    <div class="header-container">
-        <div class="header-title">👁️ Eye State Detector</div>
-        <div class="header-subtitle">Analyze Eye Status</div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown('<div class="page-wrapper">', unsafe_allow_html=True)
 
-    # Main container
-    st.markdown('<div class="main-container">', unsafe_allow_html=True)
+    col_logo, col_text = st.columns([1, 3], gap='small')
+    with col_logo:
+        st.image(create_logo(), width=90)
+    with col_text:
+        st.markdown('''
+            <div class="hero">
+                <div class="hero-title">Eye State Detector</div>
+                <div class="hero-subtitle">Upload an eye image and get fast, clean open/closed prediction with confidence.</div>
+            </div>
+        ''', unsafe_allow_html=True)
+
+    st.markdown('<div class="feature-row">', unsafe_allow_html=True)
+    st.markdown('''
+        <div class="feature-card">
+            <div class="feature-title">Eye classifier</div>
+            <div class="feature-text">Smart model that detects whether eyes are open or closed in a single image.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">Instant results</div>
+            <div class="feature-text">Prediction appears immediately after upload, with a clear confidence score.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-title">Modern UI</div>
+            <div class="feature-text">Minimal, professional website style with clean white and blue design.</div>
+        </div>
+    ''', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     model_path = 'eye_model.h5'
     if not os.path.exists(model_path):
         st.error(f'Model file not found: {model_path}')
+        st.markdown('</div>', unsafe_allow_html=True)
         return
 
     classifier = load_classifier(model_path)
 
-    # Input selection
-    st.markdown('<label class="input-label">Select Image Source</label>', unsafe_allow_html=True)
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Upload or capture your image</div>', unsafe_allow_html=True)
+    st.markdown('<label class="input-label">Select image source</label>', unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns(3, gap='small')
     with col1:
@@ -258,15 +330,12 @@ def main():
     if 'input_mode' not in st.session_state:
         st.session_state.input_mode = 'upload'
 
-    st.markdown('<br>', unsafe_allow_html=True)
-
     image = None
 
     if st.session_state.input_mode == 'upload':
-        uploaded_file = st.file_uploader('Choose image', type=['jpg', 'jpeg', 'png'], label_visibility='collapsed', key='file_upload')
+        uploaded_file = st.file_uploader('', type=['jpg', 'jpeg', 'png'], label_visibility='collapsed', key='file_upload')
         if uploaded_file:
             image = Image.open(uploaded_file)
-
     elif st.session_state.input_mode == 'url':
         image_url = st.text_input('', placeholder='Paste image URL', label_visibility='collapsed', key='url_input')
         if image_url:
@@ -275,45 +344,42 @@ def main():
                 image = Image.open(BytesIO(response.content))
             except Exception as e:
                 st.error(f'Error: {e}')
-
     elif st.session_state.input_mode == 'camera':
         camera_image = st.camera_input('', label_visibility='collapsed', key='camera_input')
         if camera_image:
             image = Image.open(camera_image)
 
+    st.markdown('</div>', unsafe_allow_html=True)
+
     # Prediction display
     if image is not None:
-        st.markdown('<div class="prediction-area">', unsafe_allow_html=True)
+        st.markdown('<div class="result-row">', unsafe_allow_html=True)
 
-        # Image display
-        st.markdown('<div class="image-section">', unsafe_allow_html=True)
-        st.image(image, width=500)
-        st.markdown('</div>', unsafe_allow_html=True)
+        with st.container():
+            col_img, col_result = st.columns([1, 1], gap='large')
 
-        # Result display
-        st.markdown('<br>', unsafe_allow_html=True)
+            with col_img:
+                st.markdown('<div class="image-card">', unsafe_allow_html=True)
+                st.image(image, use_column_width=True)
+                st.markdown('</div>', unsafe_allow_html=True)
 
-        with st.spinner('Analyzing...'):
-            label, confidence = predict_image(classifier, image)
+            with col_result:
+                st.markdown('<div class="result-card">', unsafe_allow_html=True)
+                with st.spinner('Analyzing...'):
+                    label, confidence = predict_image(classifier, image)
 
-        if label == 'Eyes Open':
-            st.markdown(f"""
-            <div class="result-box-open">
-                <span class="result-icon">👁️</span>
-                <div class="result-label">Eyes Open</div>
-                <div class="confidence-label">Confidence</div>
-                <div class="confidence-value">{confidence:.1%}</div>
-            </div>
-            """, unsafe_allow_html=True)
-        else:
-            st.markdown(f"""
-            <div class="result-box-closed">
-                <span class="result-icon">😴</span>
-                <div class="result-label">Eyes Closed</div>
-                <div class="confidence-label">Confidence</div>
-                <div class="confidence-value">{confidence:.1%}</div>
-            </div>
-            """, unsafe_allow_html=True)
+                st.markdown('<div class="result-box">', unsafe_allow_html=True)
+                if label == 'Eyes Open':
+                    st.markdown('<div class="icon-large">👁️</div>', unsafe_allow_html=True)
+                    st.markdown('<div class="result-label">Eyes Open</div>', unsafe_allow_html=True)
+                else:
+                    st.markdown('<div class="icon-large">😴</div>', unsafe_allow_html=True)
+                    st.markdown('<div class="result-label">Eyes Closed</div>', unsafe_allow_html=True)
+
+                st.markdown('<div class="confidence-label">Confidence</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="confidence-value">{confidence:.1%}</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
 
         st.markdown('</div>', unsafe_allow_html=True)
 
